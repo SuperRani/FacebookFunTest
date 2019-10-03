@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1047373343652",
+    "firebase_url": "https://facebookfuntest-ad62f.firebaseio.com",
+    "project_id": "facebookfuntest-ad62f",
+    "storage_bucket": "facebookfuntest-ad62f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047373343652:android:5609b08b16bba1d4d42f31",
+        "android_client_info": {
+          "package_name": "com.example.facebookfuntest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1047373343652-bbtjmq1hg0vbq14nfam2itstkgdsfj9a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.facebookfuntest",
+            "certificate_hash": "f94a2e98c93c1a289cc345ba07e4ec7c5c70bd9f"
+          }
+        },
+        {
+          "client_id": "1047373343652-r98p5mevbv1j491750t9aeccdj0j7q5c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNvTXvzzRvbR9a4TYjZ2PbIsjvohPpfr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1047373343652-r98p5mevbv1j491750t9aeccdj0j7q5c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
