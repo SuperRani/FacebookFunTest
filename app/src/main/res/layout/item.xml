@@ -9,12 +9,12 @@
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="#F1E6E6"
         android:layout_margin="5dp"
+        app:cardBackgroundColor="#F1E6E6"
         app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
-        app:contentPadding="5dp"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        app:contentPadding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,7 +27,6 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/circlepProfileImg"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -44,7 +43,7 @@
                         android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:hint="연애의 모든 것" />
+                        android:hint="@string/item_title" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -56,7 +55,7 @@
                             android:id="@+id/pastTime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="14분" />
+                            android:hint="@string/item_pastTime" />
 
                         <ImageView
                             android:id="@+id/isPublicContents"
@@ -79,7 +78,7 @@
                     android:id="@+id/contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="내용을 입력해봐 ^^"
+                    android:hint="@string/item_contents"
                     android:inputType="text"
                     android:lines="3"
                     android:maxLines="3"
@@ -126,8 +125,8 @@
                     android:id="@+id/isClickPeople"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:hint="2,226"
+                    android:layout_marginStart="5dp"
+                    android:hint="@string/item_isClickPeople"
                     android:textSize="15sp" />
 
                 <View
@@ -139,7 +138,7 @@
                     android:id="@+id/numOfComment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="댓글 300개"
+                    android:hint="@string/item_numOfComment"
                     android:textSize="15sp" />
 
                 <TextView
@@ -152,7 +151,7 @@
                     android:id="@+id/numOfShare"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="공유 48회"
+                    android:hint="@string/item_numOfShare"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -163,33 +162,33 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:checked="false"
                     android:id="@+id/goodBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@drawable/selector_btn_click"
-                    android:text="좋아요"
+                    android:checked="false"
                     android:padding="10dp"
-                    android:textSize="12sp"></CheckBox>
+                    android:text="좋아요"
+                    android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/commentBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/good"
+                    android:drawableStart="@drawable/good"
                     android:text="댓글 달기"
-                    android:textSize="12sp"></Button>
+                    android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/shareBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/good"
+                    android:drawableStart="@drawable/good"
                     android:text="공유하기"
-                    android:textSize="12sp"></Button>
+                    android:textSize="12dp" />
 
             </LinearLayout>
 

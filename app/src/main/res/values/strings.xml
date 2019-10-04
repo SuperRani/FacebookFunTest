@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Facebook</string>
+    <string name="item_title">연애의 모든 것</string>
+    <string name="item_pastTime">14분</string>
+    <string name="item_contents">내용을 입력해봐 ^^</string>
+    <string name="item_isClickPeople">2,226</string>
+    <string name="item_numOfComment">댓글 300개</string>
+    <string name="item_numOfShare">공유 48회</string>
+
+
 </resources>

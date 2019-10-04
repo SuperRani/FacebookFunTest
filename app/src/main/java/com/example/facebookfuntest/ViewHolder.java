@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
     private View mView;
@@ -33,6 +34,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         mTitle.setText(title);
         mPastTime.setText(pastTime);
         mContents.setText(contents);
+        // need cache // storage read/write permission --> "runtime permission"
+
         Glide.with(context).load(mainImg).into(mMainIng);
 
     }

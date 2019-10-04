@@ -1,79 +1,89 @@
 package com.example.facebookfuntest;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import androidx.viewpager.widget.ViewPager;
+
+import android.content.Context;
 
 import android.os.Bundle;
-import android.widget.TabHost;
 
-import com.bumptech.glide.load.model.Model;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.google.android.material.tabs.TabLayout;
+
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
-    private FirebaseDatabase mFirebaseDatabase;
-    DatabaseReference mRef;
 
+    public ViewPager mVp;
+    public ContentsPagerAdapter mContentsPagerAdapter;
+    public TabLayout mTabLayout;
+    public Context mContext;
+
+
+    /**
+     * 1. glide cache
+     * 2. storage permission (runtime permission)
+     * 3. tab content -> fragment
+     * <p>
+     * next
+     * AsyncTask --> network --> HttpUrlConnection (background thread)
+     * Kotlin
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = getApplicationContext();
 
-        TabHost host = findViewById(R.id.tabHost);
-        host.setup();
-        TabHost.TabSpec spec = host.newTabSpec("Tab1");
+        mTabLayout = (TabLayout) findViewById(R.id.layout_tab);
 
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView(R.drawable.newspeed)));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView(R.drawable.group)));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView(R.drawable.watch)));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView(R.drawable.mine)));
+        mTabLayout.addTab(mTabLayout.newTab().setCustomView(createTabView(R.drawable.alert)));
+        mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerviewTab1);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mRef = mFirebaseDatabase.getReference("Data");
+        mVp = (ViewPager) findViewById(R.id.vp);
 
+        mContentsPagerAdapter = new ContentsPagerAdapter(getSupportFragmentManager(), mTabLayout.getTabCount());
+        mVp.setAdapter(mContentsPagerAdapter);
 
-
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.newspeed, null));
-        spec.setContent(R.id.recyclerviewTab1);
-        host.addTab(spec);
-
-
-        spec = host.newTabSpec("tab2");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.group, null));
-        spec.setContent(R.id.tab_content2);
-        host.addTab(spec);
-
-        spec = host.newTabSpec("tab3");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.watch, null));
-        spec.setContent(R.id.tab_content3);
-        host.addTab(spec);
-
-        spec = host.newTabSpec("tab4");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.mine, null));
-        spec.setContent(R.id.tab_content4);
-        host.addTab(spec);
-
-        spec = host.newTabSpec("tab5");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.alert, null));
-        spec.setContent(R.id.tab_content5);
-        host.addTab(spec);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseRecyclerAdapter<ItemClass, ViewHolder> firebaseRecyclerAdapter
-                = new FirebaseRecyclerAdapter<ItemClass, ViewHolder>(ItemClass.class, R.layout.item, ViewHolder.class, mRef) {
+        mVp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            protected void populateViewHolder(ViewHolder viewHolder, ItemClass itemClass, int i) {
-                viewHolder.setDetails(getApplicationContext(), itemClass.getTitle(), itemClass.getPastTime(), itemClass.getContents(), itemClass.getMainImg());
+            public void onTabSelected(TabLayout.Tab tab) {  //탭 선택되었을 때 호출
+                mVp.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {    // 탭이 선택되지 않았을 대 호출
 
             }
-        };
-        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {    // 탭이 다시 선택되었을 때 호출
+
+            }
+        });
+
+
+    }
+
+
+    private View createTabView(int tabIcon) {
+        View tabView = LayoutInflater.from(mContext).inflate(R.layout.custom_tab, null);
+
+        ImageView img_name = (ImageView) tabView.findViewById(R.id.img);
+
+        img_name.setBackgroundResource(tabIcon);
+
+        return tabView;
+
     }
 }
+
